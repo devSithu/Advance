@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Customer;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::post('test',function(Request $request){
+    Customer::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'address' => $request->address,
+        'phone' => $request->phone,
+        'age' => $request->age
+    ]);
+
+    return "create success";
 });
